@@ -5,7 +5,7 @@ devDependencies:
     specifier: ^2.0.0
     version: 2.1.0(@sveltejs/kit@1.22.0)
   '@sveltejs/kit':
-    specifier: ^1.20.4
+    specifier: ^1.22.0
     version: 1.22.0(svelte@4.0.4)(vite@4.3.4)
   '@sveltejs/package':
     specifier: ^2.0.0
