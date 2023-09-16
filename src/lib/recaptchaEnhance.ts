@@ -5,12 +5,12 @@ export default (
   form: HTMLFormElement,
   {
     siteKey,
-    func,
+    callback,
     action = 'submit'
   }: {
     siteKey: string;
     action?: string;
-    func: SubmitFunction;
+    callback: SubmitFunction;
   }
 ) => {
   enhance(form, (evt) => {
@@ -18,8 +18,8 @@ export default (
 
     if (form.dataset.recaptcha) {
       evt.formData.append('g-recaptcha-response', form.dataset.recaptcha);
-      form.dataset.recaptcha = '';
-      return func(evt);
+      form.dataset.recaptcha = undefined;
+      return callback(evt);
     }
 
     evt.cancel();

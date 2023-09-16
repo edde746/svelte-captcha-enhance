@@ -28,7 +28,7 @@ Below is an example of how to use `svelte-recaptcha-enhance` in your SvelteKit a
   method="post"
   use:recaptchaEnhance={{
     siteKey: import.meta.env.VITE_SITEKEY,
-    func:
+    callback:
       ({ formData }) =>
       ({ result }) => {
         alert(result.data.message);
