@@ -27,7 +27,11 @@ export default (
     window.grecaptcha.ready(() => {
       window.grecaptcha.execute(siteKey, { action: 'submit' }).then((token: string) => {
         form.dataset.recaptcha = token;
-        form.dispatchEvent(new Event('submit'));
+        form.dispatchEvent(
+          new SubmitEvent('submit', {
+            submitter: evt.submitter
+          })
+        );
       });
     });
   });
