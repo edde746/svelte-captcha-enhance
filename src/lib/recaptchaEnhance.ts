@@ -18,7 +18,7 @@ export default (
 
     if (form.dataset.recaptcha) {
       evt.formData.append('g-recaptcha-response', form.dataset.recaptcha);
-      form.dataset.recaptcha = undefined;
+      form.removeAttribute('data-recaptcha');
       return callback(evt);
     }
 
