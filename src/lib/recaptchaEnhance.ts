@@ -13,26 +13,18 @@ export default (
     callback: SubmitFunction;
   }
 ) => {
-  enhance(form, (evt) => {
+  enhance(form, async (evt) => {
     if (form.dataset.recaptcha === 'pending') return evt.cancel();
-
-    if (form.dataset.recaptcha) {
-      evt.formData.append('g-recaptcha-response', form.dataset.recaptcha);
-      form.removeAttribute('data-recaptcha');
-      return callback(evt);
-    }
-
-    evt.cancel();
     form.dataset.recaptcha = 'pending';
-    window.grecaptcha.ready(() => {
-      window.grecaptcha.execute(siteKey, { action: 'submit' }).then((token: string) => {
-        form.dataset.recaptcha = token;
-        form.dispatchEvent(
-          new SubmitEvent('submit', {
-            submitter: evt.submitter
-          })
-        );
-      });
-    });
+
+    const token = await new Promise<string>((resolve) =>
+      window.grecaptcha.ready(() =>
+        window.grecaptcha.execute(siteKey, { action: 'submit' }).then((token: string) => resolve(token))
+      )
+    );
+
+    evt.formData.append('g-recaptcha-response', token);
+    form.removeAttribute('data-recaptcha');
+    return callback(evt);
   });
 };
