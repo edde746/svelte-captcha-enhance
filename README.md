@@ -42,8 +42,6 @@ Below is an example of how to use `svelte-recaptcha-enhance` in your SvelteKit a
 
 ## Usage
 
-In the above example, `recaptchaEnhance` is a Svelte action you can add to your form to easily integrate reCAPTCHA.
-
 You'll need to get your `siteKey` from Google's reCAPTCHA admin console and include it in your environment variables (`VITE_SITEKEY` in the example).
 
-The `func` function is the same as what would usually be passed to the `enhance` function ([documentation](https://kit.svelte.dev/docs/form-actions#progressive-enhancement))
+The `callback` function is the same as what would usually be passed to the `enhance` function ([documentation](https://kit.svelte.dev/docs/form-actions#progressive-enhancement)).
