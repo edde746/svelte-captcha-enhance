@@ -19,7 +19,7 @@ export default (
 
     const token = await new Promise<string>((resolve) =>
       window.grecaptcha.ready(() =>
-        window.grecaptcha.execute(siteKey, { action: 'submit' }).then((token: string) => resolve(token))
+        window.grecaptcha.execute(siteKey, { action }).then((token: string) => resolve(token))
       )
     );
 
