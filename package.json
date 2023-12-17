@@ -1,6 +1,6 @@
 {
   "name": "svelte-recaptcha-enhance",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "repository": {
     "type": "git",
     "url": "https://github.com/edde746/svelte-recaptcha-enhance.git"
@@ -27,10 +27,6 @@
     "!dist/**/*.test.*",
     "!dist/**/*.spec.*"
   ],
-  "peerDependencies": {
-    "svelte": "^4.0.0",
-    "@sveltejs/kit": "^1.0"
-  },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/kit": "^2.0.0",
