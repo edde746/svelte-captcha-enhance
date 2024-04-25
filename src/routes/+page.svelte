@@ -1,66 +1,19 @@
 <script lang="ts">
-  import recaptchaEnhance from '$lib/recaptchaEnhance';
+  import enhance from '$lib';
 </script>
 
 <svelte:head>
-  <script src="https://www.google.com/recaptcha/api.js?render={import.meta.env.VITE_SITEKEY}">
-  </script>
+  <title>svelte-captcha-enhance</title>
 </svelte:head>
 
-<form
-  method="post"
-  use:recaptchaEnhance={{
-    siteKey: import.meta.env.VITE_SITEKEY,
-    callback:
-      ({ formData }) =>
-      ({ result }) => {
-        alert(result.data.message);
-      }
-  }}
->
-  <h1>svelte-recaptcha-enhance</h1>
-  <input type="text" name="name" placeholder="Your name" />
-  <button>Submit</button>
-</form>
+<center>
+  <h1>svelte-captcha-enhance</h1>
+  <h3>
+    <a href="https://github.com/edde746/svelte-captcha-enhance">GitHub</a>
+  </h3>
 
-<style>
-  * {
-    all: unset;
-    font-family: sans-serif;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 24rem;
-    margin: 0 auto;
-  }
-  form > * {
-    width: 100%;
-    display: block;
-    margin-bottom: 0.25rem;
-    text-align: center;
-  }
-
-  input {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
-  }
-
-  button {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
-    background: #eee;
-    cursor: pointer;
-  }
-
-  h1 {
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 2rem 0;
-  }
-</style>
+  <h2>Examples</h2>
+  <a href="/reCaptcha">reCaptcha</a>
+  <a href="/hCaptcha">hCaptcha</a>
+  <a href="/turnstile">Turnstile</a>
+</center>
