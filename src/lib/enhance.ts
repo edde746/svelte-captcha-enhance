@@ -35,26 +35,29 @@ export default (
     form.dataset.captcha = 'pending';
 
     await new Promise<void>((resolve) => {
-      if (options.type === 'recaptcha')
+      if (options.type === 'recaptcha') {
         window.grecaptcha.ready(() =>
           window.grecaptcha.execute(options.sitekey, { action: options.action }).then((token: string) => {
             evt.formData.append('g-recaptcha-response', token);
             resolve();
           })
         );
-      else if (options.type === 'hcaptcha')
+      } else if (options.type === 'hcaptcha') {
         window.hcaptcha.execute(undefined, { async: true }).then(({ response }) => {
           evt.formData.append('h-captcha-response', response);
           resolve();
         });
-      else if (options.type === 'turnstile')
-        console.log(window.turnstile.execute(options.container || form, {
+      } else if (options.type === 'turnstile') {
+        const container = options.container || form;
+        window.turnstile.execute(container, {
           ...options,
           callback: (token) => {
             evt.formData.append('cf-turnstile-response', token);
+            window.turnstile.remove(container);
             resolve();
           }
-        }));
+        });
+      }
     });
 
     form.removeAttribute('data-captcha')
