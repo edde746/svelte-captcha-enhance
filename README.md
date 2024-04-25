@@ -1,33 +1,33 @@
-# svelte-recaptcha-enhance
+# svelte-captcha-enhance
 
-A lightweight SvelteKit utility to easily add Google reCAPTCHA v3 to your forms with progressive enhancement. This package helps you integrate Google's powerful reCAPTCHA solution into your SvelteKit applications to prevent automated software (bots) from engaging in abusive activities on your site.
+A lightweight SvelteKit utility to easily add a captcha to your forms with progressive enhancement. Currently reCaptcha, hCaptcha and turnstile are supported.
 
 ## Installation
 
-Use npm to install the `svelte-recaptcha-enhance` package:
+Use npm to install the `svelte-captcha-enhance` package:
 
 ```bash
-npm install svelte-recaptcha-enhance
+npm install svelte-captcha-enhance
 ```
 
 ## Example
 
-Below is an example of how to use `svelte-recaptcha-enhance` in your SvelteKit application:
+Below is an example of how to use `svelte-captcha-enhance` in your SvelteKit application:
 
 ```svelte
 <script>
-  import recaptchaEnhance from 'svelte-recaptcha-enhance';
+  import enhance from 'svelte-captcha-enhance';
 </script>
 
 <svelte:head>
-  <script src="https://www.google.com/recaptcha/api.js?render={import.meta.env.VITE_SITEKEY}">
-  </script>
+  <script src="https://www.google.com/recaptcha/api.js?render={import.meta.env.VITE_SITEKEY}"></script>
 </svelte:head>
 
 <form
   method="post"
-  use:recaptchaEnhance={{
-    siteKey: import.meta.env.VITE_SITEKEY,
+  use:enhance={{
+    type: 'recaptcha',
+    sitekey: import.meta.env.VITE_SITEKEY,
     callback:
       ({ formData }) =>
       ({ result }) => {
@@ -40,8 +40,10 @@ Below is an example of how to use `svelte-recaptcha-enhance` in your SvelteKit a
 </form>
 ```
 
+Check [src/routes](https://github.com/edde746/svelte-captcha-enhance/tree/master/src/routes) for full examples of hCaptcha & Turnstile.
+
 ## Usage
 
-You'll need to get your `siteKey` from Google's reCAPTCHA admin console and include it in your environment variables (`VITE_SITEKEY` in the example).
+You'll need to get your `sitekey` from the desired captcha provider and include it in your environment variables (`VITE_SITEKEY` in the example).
 
 The `callback` function is the same as what would usually be passed to the `enhance` function ([documentation](https://kit.svelte.dev/docs/form-actions#progressive-enhancement)).
