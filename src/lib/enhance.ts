@@ -9,6 +9,10 @@ type RecaptchaOptions = {
 
 type HcaptchaOptions = {
   type: 'hcaptcha';
+  /**
+   * If unspecified, the first widget on the page will be used.
+   */
+  widget?: string;
 }
 
 type TurnstileOptions = {
@@ -43,7 +47,7 @@ export default (
           })
         );
       } else if (options.type === 'hcaptcha') {
-        window.hcaptcha.execute(undefined, { async: true }).then(({ response }) => {
+        window.hcaptcha.execute(options.widget, { async: true }).then(({ response }) => {
           evt.formData.append('h-captcha-response', response);
           resolve();
         });
