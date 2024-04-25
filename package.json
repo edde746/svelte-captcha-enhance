@@ -1,6 +1,6 @@
 {
   "name": "svelte-captcha-enhance",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/edde746/svelte-captcha-enhance.git"
@@ -43,5 +43,8 @@
   },
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "type": "module"
+  "type": "module",
+  "peerDependencies": {
+    "@sveltejs/kit": "^2.5.7"
+  }
 }
