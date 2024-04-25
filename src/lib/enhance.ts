@@ -34,8 +34,6 @@ export default (
     if (form.dataset.captcha === 'pending') return evt.cancel();
     form.dataset.captcha = 'pending';
 
-    console.log('Captcha config:', options);
-
     await new Promise<void>((resolve) => {
       if (options.type === 'recaptcha')
         window.grecaptcha.ready(() =>
@@ -50,13 +48,13 @@ export default (
           resolve();
         });
       else if (options.type === 'turnstile')
-        window.turnstile.execute(options.container || form, {
+        console.log(window.turnstile.execute(options.container || form, {
           ...options,
           callback: (token) => {
             evt.formData.append('cf-turnstile-response', token);
             resolve();
           }
-        });
+        }));
     });
 
     form.removeAttribute('data-captcha')

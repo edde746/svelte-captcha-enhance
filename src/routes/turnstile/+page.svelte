@@ -12,7 +12,7 @@
     action="/"
     use:enhance={{
       type: 'turnstile',
-      container: '#turnstile', // This is not needed, it just makes it look nicer
+      container: '.turnstile', // This is not needed, it just makes it look nicer
       sitekey: import.meta.env.VITE_TURNSTILE_SITEKEY,
       callback:
         () =>
@@ -24,7 +24,7 @@
     <h1>Turnstile</h1>
     <input type="text" name="name" placeholder="Your name" />
     <!-- This is not needed -->
-    <div id="turnstile" />
+    <div class="turnstile" />
     <button>Submit</button>
   </form>
 </center>
