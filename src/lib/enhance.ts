@@ -25,15 +25,15 @@ type BypassOptions = {
 }
 
 export type CaptchaConfig = (BypassOptions | RecaptchaOptions | HcaptchaOptions | TurnstileOptions) & {
-  callback?: SubmitFunction;
+  submit?: SubmitFunction;
 }
 
 export default (
   form: HTMLFormElement,
-  { callback = () => { }, ...options }: CaptchaConfig
+  { submit = () => ({ update }) => update(), ...options }: CaptchaConfig
 ) => {
   enhance(form, async (evt) => {
-    if (options.type === 'bypass') return callback(evt);
+    if (options.type === 'bypass') return submit(evt);
 
     if (form.dataset.captcha === 'pending') return evt.cancel();
     form.dataset.captcha = 'pending';
@@ -65,6 +65,6 @@ export default (
     });
 
     form.removeAttribute('data-captcha')
-    return callback(evt);
+    return submit(evt);
   });
 };

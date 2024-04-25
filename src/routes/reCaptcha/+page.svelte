@@ -15,7 +15,7 @@
     use:enhance={{
       type: 'recaptcha',
       sitekey: import.meta.env.VITE_RECAPTCHA_SITEKEY,
-      callback:
+      submit:
         () =>
         ({ result }) => {
           alert(result.data.message);

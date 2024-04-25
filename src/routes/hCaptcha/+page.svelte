@@ -13,7 +13,7 @@
     action="/"
     use:enhance={{
       type: 'hcaptcha',
-      callback:
+      submit:
         () =>
         ({ result }) => {
           alert(result.data.message);

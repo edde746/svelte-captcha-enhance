@@ -14,7 +14,7 @@
       type: 'turnstile',
       container: '.turnstile', // This is not needed, it just makes it look nicer
       sitekey: import.meta.env.VITE_TURNSTILE_SITEKEY,
-      callback:
+      submit:
         () =>
         ({ result }) => {
           alert(result.data.message);
