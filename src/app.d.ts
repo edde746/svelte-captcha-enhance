@@ -33,6 +33,7 @@ declare global {
 		},
 		turnstile: {
 			execute: (container: string | HTMLElement, jsParams?: TurnstileRenderParams) => Promise<string>;
+			remove: (container: string | HTMLElement) => void;
 		}
 	}
 }

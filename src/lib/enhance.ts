@@ -25,12 +25,12 @@ type BypassOptions = {
 }
 
 export type CaptchaConfig = (BypassOptions | RecaptchaOptions | HcaptchaOptions | TurnstileOptions) & {
-  callback: SubmitFunction;
+  callback?: SubmitFunction;
 }
 
 export default (
   form: HTMLFormElement,
-  { callback, ...options }: CaptchaConfig
+  { callback = () => { }, ...options }: CaptchaConfig
 ) => {
   enhance(form, async (evt) => {
     if (options.type === 'bypass') return callback(evt);
