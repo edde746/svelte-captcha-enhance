@@ -1,5 +1,6 @@
 <script lang="ts">
   import enhance from '$lib';
+  import { env } from '$env/dynamic/public';
 </script>
 
 <svelte:head>
@@ -13,7 +14,7 @@
     use:enhance={{
       type: 'turnstile',
       container: '.turnstile', // This is not needed, it just makes it look nicer
-      sitekey: import.meta.env.VITE_TURNSTILE_SITEKEY,
+      sitekey: env.PUBLIC_TURNSTILE_SITEKEY,
       submit:
         () =>
         ({ result }) => {

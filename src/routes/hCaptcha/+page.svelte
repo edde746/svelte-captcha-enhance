@@ -1,5 +1,6 @@
 <script lang="ts">
   import enhance from '$lib';
+  import { env } from '$env/dynamic/public';
 </script>
 
 <svelte:head>
@@ -22,12 +23,7 @@
   >
     <h1>hCaptcha</h1>
     <input type="text" name="name" placeholder="Your name" />
-    <div
-      id="hcaptcha"
-      class="h-captcha"
-      data-sitekey={import.meta.env.VITE_HCAPTCHA_SITEKEY}
-      data-size="invisible"
-    />
+    <div id="hcaptcha" class="h-captcha" data-sitekey={env.PUBLIC_HCAPTCHA_SITEKEY} data-size="invisible" />
     <button>Submit</button>
   </form>
 </center>

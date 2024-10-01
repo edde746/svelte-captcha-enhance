@@ -1,11 +1,10 @@
 <script lang="ts">
   import enhance from '$lib';
+  import { env } from '$env/dynamic/public';
 </script>
 
 <svelte:head>
-  <script
-    src="https://www.google.com/recaptcha/api.js?render={import.meta.env.VITE_RECAPTCHA_SITEKEY}"
-  ></script>
+  <script src="https://www.google.com/recaptcha/api.js?render={env.PUBLIC_RECAPTCHA_SITEKEY}"></script>
 </svelte:head>
 
 <center>
@@ -14,7 +13,7 @@
     action="/"
     use:enhance={{
       type: 'recaptcha',
-      sitekey: import.meta.env.VITE_RECAPTCHA_SITEKEY,
+      sitekey: env.PUBLIC_RECAPTCHA_SITEKEY,
       submit:
         () =>
         ({ result }) => {

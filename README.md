@@ -16,18 +16,19 @@ Below is an example of how to use `svelte-captcha-enhance` in your SvelteKit app
 
 ```svelte
 <script>
+  import { env } from '$env/dynamic/public';
   import enhance from 'svelte-captcha-enhance';
 </script>
 
 <svelte:head>
-  <script src="https://www.google.com/recaptcha/api.js?render={import.meta.env.VITE_SITEKEY}"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render={env.PUBLIC_SITEKEY}"></script>
 </svelte:head>
 
 <form
   method="post"
   use:enhance={{
     type: 'recaptcha',
-    sitekey: import.meta.env.VITE_SITEKEY,
+    sitekey: env.PUBLIC_SITEKEY,
     submit:
       ({ formData }) =>
       ({ result }) => {
@@ -44,6 +45,6 @@ Check [src/routes](https://github.com/edde746/svelte-captcha-enhance/tree/master
 
 ## Usage
 
-You'll need to get your `sitekey` from the desired captcha provider and include it in your environment variables (`VITE_SITEKEY` in the example).
+You'll need to get your `sitekey` from the desired captcha provider and include it in your environment variables (`PUBLIC_SITEKEY` in the example).
 
 The `callback` function is the same as what would usually be passed to the `enhance` function ([documentation](https://kit.svelte.dev/docs/form-actions#progressive-enhancement)).
