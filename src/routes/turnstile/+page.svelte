@@ -25,7 +25,7 @@
     <h1>Turnstile</h1>
     <input type="text" name="name" placeholder="Your name" />
     <!-- This is not needed -->
-    <div class="turnstile" />
+    <div class="turnstile"></div>
     <button>Submit</button>
   </form>
 </center>
