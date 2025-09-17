@@ -75,13 +75,13 @@ const enhance = (
       if (options.type === 'recaptcha') {
         window.grecaptcha.ready(() =>
           window.grecaptcha.execute(options.sitekey, { action: options.action }).then((token: string) => {
-            evt.formData.append('g-recaptcha-response', token);
+            evt.formData.set('g-recaptcha-response', token);
             resolve();
           })
         );
       } else if (options.type === 'hcaptcha') {
         window.hcaptcha.execute(options.widget, { async: true }).then(({ response }) => {
-          evt.formData.append('h-captcha-response', response);
+          evt.formData.set('h-captcha-response', response);
           resolve();
         });
       } else if (options.type === 'turnstile') {
@@ -89,7 +89,7 @@ const enhance = (
         window.turnstile.execute(container, {
           ...options,
           callback: (token) => {
-            evt.formData.append('cf-turnstile-response', token);
+            evt.formData.set('cf-turnstile-response', token);
             window.turnstile.remove(container);
             resolve();
           }
@@ -97,7 +97,7 @@ const enhance = (
       }
     });
 
-    form.removeAttribute('data-captcha')
+    form.removeAttribute('data-captcha');
     return submit(evt);
   });
 };
